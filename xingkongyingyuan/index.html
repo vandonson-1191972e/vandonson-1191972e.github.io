@@ -1,0 +1,1410 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>星空影院-在线观影指南_热门电影推荐_影视专题解析</title>
+    <meta name="description" content="星空影院专注提供热门电影、剧集与专题内容的在线观影参考，涵盖类型解析、看点推荐、最新更新与用户讨论，帮助影迷快速找到值得看的影视内容，收藏这一页就够了。">
+    <meta name="keywords" content="星空影院,在线观影,电影推荐,影视专题,热门剧集">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-deep: #0a0c12;
+            --bg-card: #12151d;
+            --bg-elevated: #1a1e2a;
+            --border-glow: #2a3040;
+            --text-primary: #f0f3fa;
+            --text-secondary: #a0a8bc;
+            --text-muted: #6b7280;
+            --accent-cyan: #3ee0ff;
+            --accent-purple: #a26bfa;
+            --accent-pink: #ff6b9d;
+            --accent-gold: #ffc857;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 16px 40px rgba(62, 224, 255, 0.12);
+            --font-sans: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .xl-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 顶部导航 */
+        .nx-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 12, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .nx-nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nx-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nx-logo-icon {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .nx-logo-icon::after {
+            content: "★";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #0a0c12;
+        }
+
+        .nx-logo span {
+            background: linear-gradient(to right, #fff, #a0c8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nx-nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nx-nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            font-weight: 500;
+        }
+
+        .nx-nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Banner */
+        .nx-hero {
+            padding: 48px 0 40px;
+            background: radial-gradient(ellipse at 30% 20%, rgba(62, 224, 255, 0.08), transparent 55%),
+                        radial-gradient(ellipse at 80% 60%, rgba(162, 107, 250, 0.08), transparent 50%);
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .nx-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nx-hero-left h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .nx-hero-left h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nx-hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            max-width: 500px;
+        }
+
+        .nx-search-box {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 60px;
+            padding: 4px 4px 4px 20px;
+            align-items: center;
+            margin-bottom: 28px;
+            box-shadow: 0 0 0 1px rgba(62, 224, 255, 0.1);
+        }
+
+        .nx-search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .nx-search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .nx-search-box button {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border: none;
+            color: #0a0c12;
+            font-weight: 700;
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            cursor: default;
+            transition: transform 0.2s;
+        }
+
+        .nx-hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nx-hero-btns a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-glow);
+            border-radius: 40px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .nx-hero-btns a:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(62, 224, 255, 0.15);
+        }
+
+        .nx-hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nx-hero-visual {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1/1;
+            background: linear-gradient(145deg, #1a1e2a, #0f1219);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 0 60px rgba(62, 224, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nx-hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(62, 224, 255, 0.15), transparent 60%),
+                        radial-gradient(circle at 70% 70%, rgba(162, 107, 250, 0.12), transparent 60%);
+        }
+
+        .nx-hero-visual .big-star {
+            font-size: 64px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 24px rgba(62, 224, 255, 0.5));
+        }
+
+        .nx-hero-visual .tagline {
+            position: relative;
+            z-index: 1;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+        }
+
+        /* 通用section */
+        .nx-section {
+            padding: 56px 0;
+            border-bottom: 1px solid var(--border-glow);
+        }
+
+        .nx-section:last-child {
+            border-bottom: none;
+        }
+
+        .nx-section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .nx-section-head h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nx-section-head h2::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 28px;
+            background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
+            border-radius: 4px;
+        }
+
+        .nx-section-head .more {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nx-section-head .more:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* 卡片网格 */
+        .nx-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .nx-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            padding: 22px;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nx-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(62, 224, 255, 0.3);
+        }
+
+        .nx-card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 40px;
+            background: rgba(62, 224, 255, 0.1);
+            color: var(--accent-cyan);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            align-self: flex-start;
+        }
+
+        .nx-card-tag.purple {
+            background: rgba(162, 107, 250, 0.12);
+            color: var(--accent-purple);
+        }
+
+        .nx-card-tag.pink {
+            background: rgba(255, 107, 157, 0.12);
+            color: var(--accent-pink);
+        }
+
+        .nx-card-tag.gold {
+            background: rgba(255, 200, 87, 0.12);
+            color: var(--accent-gold);
+        }
+
+        .nx-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .nx-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .nx-card-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-glow);
+        }
+
+        .nx-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 最新更新列表 */
+        .nx-update-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .nx-update-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 18px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-glow);
+            transition: background 0.2s;
+            gap: 16px;
+        }
+
+        .nx-update-item:first-child {
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+        }
+
+        .nx-update-item:last-child {
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            border-bottom: none;
+        }
+
+        .nx-update-item:hover {
+            background: var(--bg-elevated);
+        }
+
+        .nx-update-time {
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .nx-update-title {
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .nx-update-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            flex: 2;
+        }
+
+        /* 分类入口 */
+        .nx-cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .nx-cat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: var(--radius-md);
+            padding: 24px 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nx-cat-item:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 24px rgba(162, 107, 250, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nx-cat-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .nx-cat-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nx-cat-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* 深度解析 */
+        .nx-article {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            border: 1px solid var(--border-glow);
+        }
+
+        .nx-article h3 {
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+            color: var(--accent-cyan);
+        }
+
+        .nx-article h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .nx-article p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+            font-size: 0.98rem;
+        }
+
+        .nx-article strong {
+            color: var(--text-primary);
+        }
+
+        /* 体验指南 */
+        .nx-guide-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .nx-guide-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            padding: 24px;
+        }
+
+        .nx-guide-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--accent-cyan);
+        }
+
+        .nx-guide-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* FAQ 手风琴风格 */
+        .nx-faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nx-faq-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            overflow: hidden;
+        }
+
+        .nx-faq-q {
+            padding: 18px 24px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: default;
+            color: var(--text-primary);
+        }
+
+        .nx-faq-q::after {
+            content: "＋";
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .nx-faq-a {
+            padding: 0 24px 20px 24px;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        /* 评论 */
+        .nx-comment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .nx-comment-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            padding: 18px 20px;
+            display: flex;
+            gap: 14px;
+        }
+
+        .nx-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #0a0c12;
+            flex-shrink: 0;
+        }
+
+        .nx-comment-body {
+            flex: 1;
+        }
+
+        .nx-comment-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .nx-comment-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .nx-comment-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .nx-comment-text {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* 资讯卡片 */
+        .nx-news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .nx-news-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glow);
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .nx-news-card:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .nx-news-date {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .nx-news-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .nx-news-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        .nx-footer {
+            padding: 40px 0 32px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-glow);
+        }
+
+        .nx-footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .nx-footer-brand {
+            max-width: 300px;
+        }
+
+        .nx-footer-brand .nx-logo {
+            margin-bottom: 12px;
+        }
+
+        .nx-footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .nx-footer-links {
+            display: flex;
+            gap: 60px;
+        }
+
+        .nx-footer-col h5 {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .nx-footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            transition: color 0.2s;
+        }
+
+        .nx-footer-col a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nx-footer-bottom {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-glow);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            gap: 12px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .nx-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .nx-hero-left h1 {
+                font-size: 2.2rem;
+            }
+
+            .nx-card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nx-cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nx-comment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nx-news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nx-nav-links {
+                display: none;
+            }
+
+            .nx-footer-links {
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nx-hero-left h1 {
+                font-size: 1.8rem;
+            }
+
+            .nx-card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nx-cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nx-news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nx-guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nx-update-item {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .nx-update-desc {
+                flex-basis: 100%;
+            }
+
+            .nx-article {
+                padding: 24px 20px;
+            }
+
+            .nx-section {
+                padding: 40px 0;
+            }
+
+            .nx-footer-inner {
+                flex-direction: column;
+            }
+
+            .nx-footer-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-glow);
+            border-radius: 4px;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<nav class="nx-nav">
+    <div class="xl-container nx-nav-inner">
+        <a class="nx-logo" href="/#nx-hero">
+            <span class="nx-logo-icon"></span>
+            <span>星空影院</span>
+        </a>
+        <ul class="nx-nav-links">
+            <li><a href="/#nx-hot">热门推荐</a></li>
+            <li><a href="/#nx-update">最新更新</a></li>
+            <li><a href="/#nx-cats">分类入口</a></li>
+            <li><a href="/#nx-deep">深度解析</a></li>
+            <li><a href="/#nx-faq">常见问题</a></li>
+            <li><a href="/#nx-comments">用户评论</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 首屏 Banner -->
+<section class="nx-hero" id="nx-hero">
+    <div class="xl-container nx-hero-grid">
+        <div class="nx-hero-left">
+            <h1>星空影院 <em>在线观影专题</em><br>热门电影与剧集推荐</h1>
+            <p class="nx-hero-desc">
+                汇聚近期值得关注的电影、剧集与专题内容。<br>
+                从类型解析到看点速览，帮你快速找到下一部想看的片子。
+            </p>
+            <div class="nx-search-box">
+                <input type="text" placeholder="搜索片名、演员或类型…" aria-label="搜索星空影院内容">
+                <button type="button">搜索</button>
+            </div>
+            <div class="nx-hero-btns">
+                <a href="/#nx-hot">热门推荐</a>
+                <a href="/#nx-update">最新更新</a>
+                <a href="/#nx-cats">分类浏览</a>
+                <a href="/#nx-deep">深度解析</a>
+                <a href="/#nx-guide">体验指南</a>
+                <a href="/#nx-faq">常见问题</a>
+                <a href="/#nx-comments">用户评论</a>
+                <a href="/#nx-news">相关资讯</a>
+            </div>
+        </div>
+        <div class="nx-hero-right">
+            <div class="nx-hero-visual">
+                <div class="big-star">✦</div>
+                <div class="tagline">STAR CINEMA · 2026</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 内容简介 -->
+<section class="nx-section" id="nx-intro">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>关于星空影院</h2>
+        </div>
+        <div class="nx-article">
+            <p><strong>星空影院</strong>是一个以影视内容消费为核心的专题参考页面，面向喜欢在线观影的普通观众与影迷群体。这里不做简单的片单堆砌，而是围绕“值得看什么、为什么值得看、适合谁看”三个核心问题，提供类型解析、看点提炼和观看建议。无论你是想找一部轻松下饭的喜剧，还是想深入一部悬疑烧脑的剧集，都能在<strong>星空影院</strong>的页面结构里找到对应的入口。</p>
+            <p>页面内容覆盖电影、剧集、综艺等常见影视形态，按照热门推荐、最新更新、分类入口、深度解析、体验指南、常见问题、用户评论和资讯动态等模块组织。每个模块承担不同的信息功能：推荐卡片帮你快速扫到高热度内容，深度解析帮你判断一部作品是否对味，FAQ则集中回应观影选择中遇到的具体疑问。<strong>星空影院</strong>的定位不是替代播放平台，而是作为观影前的决策参考页，减少“打开平台后不知道看什么”的时间消耗。</p>
+            <p>适合收藏本页的人群包括：每周固定追剧的上班族、喜欢在周末集中观影的学生、对特定类型片有偏好的影迷，以及想了解近期影视动态但不想被碎片信息淹没的普通用户。<strong>星空影院</strong>通过结构化的内容呈现，让不同需求的观众都能在较短时间内完成从“浏览”到“选定”的过程。页面中的推荐与解析会随更新节奏调整，保持对当前影视消费热点的同步。</p>
+        </div>
+    </div>
+</section>
+
+<!-- 热门推荐 -->
+<section class="nx-section" id="nx-hot">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>热门内容推荐</h2>
+            <a class="more" href="/#nx-hot">查看更多 →</a>
+        </div>
+        <div class="nx-card-grid">
+            <div class="nx-card">
+                <span class="nx-card-tag">电影 · 科幻</span>
+                <h3>《深空回响》</h3>
+                <p>硬科幻外壳下的人文叙事，节奏偏慢但后劲足。适合喜欢《星际穿越》式情感结构的观众，视效不是唯一卖点。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 9.2</span>
+                    <span>⭐ 8.7</span>
+                    <span>2026-11-05 上线</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag purple">剧集 · 悬疑</span>
+                <h3>《雾港来信》</h3>
+                <p>双线叙事加小镇谜案，前四集铺设信息量较大，第五集开始收束。适合喜欢边看边推理的观众。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 8.9</span>
+                    <span>⭐ 8.5</span>
+                    <span>更新至 第6集</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag pink">电影 · 剧情</span>
+                <h3>《春分之后》</h3>
+                <p>小成本现实题材，讲述两个中年人的重逢与告别。表演扎实，台词密度高，适合安静观看。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 8.4</span>
+                    <span>⭐ 8.8</span>
+                    <span>2026-11-01 上线</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag gold">剧集 · 古装</span>
+                <h3>《长安夜行录》</h3>
+                <p>以唐代长安城为背景的单元探案剧，每两集一个案件，节奏明快。服化道考究，适合下饭或碎片时间观看。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 9.0</span>
+                    <span>⭐ 8.3</span>
+                    <span>更新至 第12集</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag">电影 · 动画</span>
+                <h3>《云上邮差》</h3>
+                <p>手绘风格动画电影，讲述一个少年邮差在云端小镇的奇幻旅程。画风治愈，故事简单但不低幼。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 8.1</span>
+                    <span>⭐ 8.6</span>
+                    <span>2026-11-03 上线</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag purple">剧集 · 都市</span>
+                <h3>《合租公寓404》</h3>
+                <p>轻喜剧路线，四个性格迥异的年轻人合租日常。笑点密集但偶尔用力过猛，适合放松观看。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 7.9</span>
+                    <span>⭐ 8.0</span>
+                    <span>更新至 第8集</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag pink">电影 · 爱情</span>
+                <h3>《十一月的信》</h3>
+                <p>书信体爱情片，跨越十年的异地恋故事。情绪细腻，结局处理有争议，适合喜欢慢节奏情感片的观众。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 8.3</span>
+                    <span>⭐ 8.1</span>
+                    <span>2026-10-30 上线</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag gold">剧集 · 奇幻</span>
+                <h3>《雾山五行录》</h3>
+                <p>东方奇幻世界观，前两集世界观铺陈较密，第三集起进入主线。打斗设计流畅，美术风格辨识度高。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 8.7</span>
+                    <span>⭐ 8.4</span>
+                    <span>更新至 第9集</span>
+                </div>
+            </div>
+            <div class="nx-card">
+                <span class="nx-card-tag">电影 · 喜剧</span>
+                <h3>《年会不能停！2》</h3>
+                <p>延续职场讽刺路线，笑点比第一部更密集。适合下班后不带脑子观看，部分桥段略显套路。</p>
+                <div class="nx-card-meta">
+                    <span>🔥 热度 9.1</span>
+                    <span>⭐ 7.8</span>
+                    <span>2026-11-02 上线</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 最新更新 -->
+<section class="nx-section" id="nx-update">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>最新更新与热播动态</h2>
+            <a class="more" href="/#nx-update">全部更新 →</a>
+        </div>
+        <div class="nx-update-list">
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-07 18:00</span>
+                <span class="nx-update-title">《雾港来信》第7集</span>
+                <span class="nx-update-desc">新线索指向十年前的旧案，女主与警探的关系出现裂痕。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-07 14:00</span>
+                <span class="nx-update-title">《长安夜行录》第13集</span>
+                <span class="nx-update-desc">单元案件更新，本次围绕西市胡商失踪展开，节奏紧凑。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-07 10:00</span>
+                <span class="nx-update-title">《深空回响》口碑追踪</span>
+                <span class="nx-update-desc">上线两日评分稳定在8.7，观众讨论集中在结尾二十分钟。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-06 20:00</span>
+                <span class="nx-update-title">《合租公寓404》第9集</span>
+                <span class="nx-update-desc">新租客入住，合租矛盾升级，本集笑点集中在厨房戏。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-06 16:00</span>
+                <span class="nx-update-title">《雾山五行录》第10集预告</span>
+                <span class="nx-update-desc">下周进入新章节，主角团将前往北境，世界观进一步展开。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-05 21:00</span>
+                <span class="nx-update-title">《春分之后》上线</span>
+                <span class="nx-update-desc">小成本现实题材新片，首日观众评价以“表演真实”为主。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-05 15:00</span>
+                <span class="nx-update-title">《十一月的信》讨论升温</span>
+                <span class="nx-update-desc">结局处理引发两派观点，评论区讨论量已过万。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-04 19:00</span>
+                <span class="nx-update-title">《云上邮差》上线</span>
+                <span class="nx-update-desc">手绘动画电影，首周末口碑表现稳定，适合家庭观看。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-04 12:00</span>
+                <span class="nx-update-title">《年会不能停！2》热度登顶</span>
+                <span class="nx-update-desc">喜剧类型在周末档表现突出，单日播放量居前。</span>
+            </div>
+            <div class="nx-update-item">
+                <span class="nx-update-time">11-03 20:00</span>
+                <span class="nx-update-title">《长安夜行录》制作特辑</span>
+                <span class="nx-update-desc">官方发布服化道幕后，展示唐代长安城场景搭建过程。</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 分类入口 -->
+<section class="nx-section" id="nx-cats">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>分类入口</h2>
+            <a class="more" href="/#nx-cats">全部分类 →</a>
+        </div>
+        <div class="nx-cat-grid">
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">🎬</span>
+                <span class="nx-cat-name">电影精选</span>
+                <span class="nx-cat-count">128 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">📺</span>
+                <span class="nx-cat-name">热播剧集</span>
+                <span class="nx-cat-count">86 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">🕵️</span>
+                <span class="nx-cat-name">悬疑推理</span>
+                <span class="nx-cat-count">42 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">💑</span>
+                <span class="nx-cat-name">爱情文艺</span>
+                <span class="nx-cat-count">35 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">😂</span>
+                <span class="nx-cat-name">喜剧下饭</span>
+                <span class="nx-cat-count">28 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">🚀</span>
+                <span class="nx-cat-name">科幻奇幻</span>
+                <span class="nx-cat-count">31 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">🏮</span>
+                <span class="nx-cat-name">古装历史</span>
+                <span class="nx-cat-count">24 部</span>
+            </a>
+            <a class="nx-cat-item" href="/#nx-hot">
+                <span class="nx-cat-icon">🎨</span>
+                <span class="nx-cat-name">动画电影</span>
+                <span class="nx-cat-count">19 部</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- 深度解析 -->
+<section class="nx-section" id="nx-deep">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>深度解析正文</h2>
+        </div>
+        <div class="nx-article">
+            <h3>星空影院的选片逻辑与内容定位</h3>
+            <p>在信息过载的当下，观众面对的主要问题已经不是“没东西看”，而是“选什么看”。<strong>星空影院</strong>的内容组织围绕这一痛点展开：不追求覆盖所有影视作品，而是把近期关注度较高、讨论度较集中的电影和剧集筛选出来，用相对克制的篇幅给出判断依据。页面的推荐卡片会标注类型、更新状态和简短看点，方便快速扫描；深度解析部分则针对不同类型的作品展开更具体的分析，帮助读者理解一部作品的气质是否与自己的观看习惯匹配。</p>
+            <p>从类型分布来看，<strong>星空影院</strong>当前重点覆盖悬疑、科幻、现实剧情和轻喜剧四个方向。悬疑类以剧集为主，注重叙事结构和信息释放节奏；科幻类以电影为主，关注设定完整度和情感落点；现实剧情类偏向中小成本作品，看重表演和文本质量；轻喜剧则承担放松功能，对逻辑严谨度要求相对宽松。这种分类方式不是严格意义上的类型学划分，而是更贴近普通观众“今晚想看什么感觉的片子”这一实际决策场景。</p>
+            <h3>内容吸引点与观看体验</h3>
+            <p>一部作品能不能留住观众，前十五分钟往往起决定作用。<strong>星空影院</strong>在推荐卡片中会尽量标注作品的“进入门槛”：有的剧集前几集需要耐心铺设，有的电影开场即进入高强度叙事，有的作品则适合碎片时间观看。这些信息看起来琐碎，但对实际选择影响很大。比如《雾港来信》前四集信息密度高、人物关系复杂，适合愿意投入注意力的观众；而《合租公寓404》单集篇幅短、笑点前置，更适合下班后放松观看。区分这两类内容，比单纯按评分排序更有参考价值。</p>
+            <p>在表现力层面，<strong>星空影院</strong>的解析会区分“制作水准”和“观感匹配度”。制作水准高的作品不一定适合所有人，比如部分视觉风格强烈的奇幻剧集，对世界观接受度较低的观众来说反而是障碍。页面在推荐时会尽量说明这类作品的审美倾向和叙事节奏，减少“慕名而来、败兴而归”的情况。对于动画电影和视效突出的作品，也会单独提示画风特点和适合的观看场景。</p>
+            <h3>适合人群与同类比较</h3>
+            <p><strong>星空影院</strong>的页面结构兼顾了不同深度需求的观众。只想快速决定看什么的用户，可以直接浏览热门推荐和最新更新；愿意花时间做功课的用户，可以进入深度解析和FAQ了解更具体的判断依据；喜欢参与讨论的用户则能在评论区和资讯模块看到其他人的观点。这种分层设计让同一页面服务不同阅读习惯的人群，而不是把所有信息压在一个维度上。</p>
+            <p>同类内容比较方面，<strong>星空影院</strong>更倾向于做“类型内比较”而不是跨类型排名。悬疑剧和喜剧片放在一起比较评分意义不大，但同样是悬疑剧，叙事节奏、案件设计、人物塑造的差异就值得展开。页面中的推荐卡片和深度解析会尽量体现这种比较视角，帮助读者建立自己的判断标准，而不是单纯依赖一个分数做决定。对于搜索“星空影院”这个关键词的用户来说，通常希望获得的是有筛选逻辑的内容参考，而不是海量片单的简单罗列。</p>
+            <p>需要说明的是，<strong>星空影院</strong>提供的是观影决策参考，不提供播放服务。页面中的推荐和解析基于公开信息和观众反馈整理，具体观看体验因人而异。建议结合自己的偏好和可用时间做选择，不必被热度或评分完全左右。影视消费本身就是一件主观的事，找到与自己频率匹配的作品，比追热点更重要。</p>
+        </div>
+    </div>
+</section>
+
+<!-- 体验指南 -->
+<section class="nx-section" id="nx-guide">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>体验指南</h2>
+        </div>
+        <div class="nx-guide-grid">
+            <div class="nx-guide-item">
+                <h4>页面结构清晰</h4>
+                <p>热门推荐、最新更新、分类入口、深度解析、FAQ等模块分区明确，顶部导航可快速跳转，减少反复滚动的操作成本。</p>
+            </div>
+            <div class="nx-guide-item">
+                <h4>分类筛选方便</h4>
+                <p>按电影、剧集、悬疑、喜剧等维度设置分类入口，每个入口对应页面内的内容锚点，方便快速定位感兴趣的类型。</p>
+            </div>
+            <div class="nx-guide-item">
+                <h4>移动端友好</h4>
+                <p>页面在手机端自动切换为单列布局，卡片和列表均可正常阅读，适合通勤或碎片时间浏览。</p>
+            </div>
+            <div class="nx-guide-item">
+                <h4>适合追更与收藏</h4>
+                <p>最新更新模块按时间排列近期动态，追剧用户可快速了解更新进度，收藏本页即可定期回访查看。</p>
+            </div>
+            <div class="nx-guide-item">
+                <h4>推荐路径清晰</h4>
+                <p>从推荐卡片到深度解析再到FAQ，形成“扫一眼→看详情→解疑惑”的浏览路径，帮助不同需求的用户快速获取信息。</p>
+            </div>
+            <div class="nx-guide-item">
+                <h4>评论与资讯补充</h4>
+                <p>用户评论提供真实观感参考，相关资讯补充行业动态，两者结合让页面信息不局限于单向推荐。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="nx-section" id="nx-faq">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>常见问题</h2>
+        </div>
+        <div class="nx-faq-list">
+            <div class="nx-faq-item">
+                <div class="nx-faq-q">星空影院主要推荐什么类型的影视内容？</div>
+                <div class="nx-faq-a">星空影院当前的内容覆盖悬疑、科幻、现实剧情、轻喜剧、古装和动画等常见类型，以电影和剧集为主。推荐逻辑侧重近期讨论度较高、有明确观看场景的作品，同时会标注更新状态和适合人群，方便快速判断是否对味。</div>
+            </div>
+            <div class="nx-faq-item">
+                <div class="nx-faq-q">页面上的评分和热度是怎么来的？</div>
+                <div class="nx-faq-a">评分和热度是基于公开观众反馈和讨论量整理的参考值，不是官方数据。主要用于横向比较同一类型作品的关注度差异，不建议作为唯一判断依据。实际观看体验受个人偏好影响较大，建议结合深度解析中的内容描述综合判断。</div>
+            </div>
+            <div class="nx-faq-item">
+                <div class="nx-faq-q">热门推荐和最新更新有什么区别？</div>
+                <div class="nx-faq-a">热门推荐侧重近期关注度较高、值得优先考虑的作品，附带简短看点说明；最新更新侧重时间维度，展示近期上线、更新或讨论升温的内容动态。前者适合“不知道看什么”时浏览，后者适合已经有关注方向、需要追踪进度的用户。</div>
+            </div>
+            <div class="nx-faq-item">
+                <div class="nx-faq-q">适合第一次来星空影院的人从哪里开始看？</div>
+                <div class="nx-faq-a">建议先浏览热门推荐卡片，找到感兴趣的类型或片名，再看对应的简短看点判断是否匹配自己的观看习惯。如果有具体疑问，可以查看FAQ或深度解析中对应段落的说明。分类入口适合已有明确类型偏好的用户直接跳转。</div>
+            </div>
+            <div class="nx-faq-item">
+                <div class="nx-faq-q">页面推荐的作品适合什么观看场景？</div>
+                <div class="nx-faq-a">轻喜剧和单元剧适合碎片时间或下饭观看；悬疑剧和科幻电影建议留出完整时间段，避免中断影响理解；现实题材和文艺向作品适合安静环境观看。推荐卡片和深度解析中会对节奏和进入门槛做提示，可据此选择。</div>
+            </div>
+            <div class="nx-faq-item">
+                <div class="nx-faq-q">星空影院会持续更新吗？</div>
+                <div class="nx-faq-a">会。最新更新模块按时间顺序展示近期动态，热门推荐和深度解析也会随内容讨论热度做调整。建议收藏本页，或定期回访查看最新更新列表，了解近期值得关注的新片和新剧。</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 用户评论 -->
+<section class="nx-section" id="nx-comments">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>用户评论</h2>
+            <a class="more" href="/#nx-comments">更多评论 →</a>
+        </div>
+        <div class="nx-comment-grid">
+            <div class="nx-comment-item">
+                <div class="nx-avatar">深</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">深海放映员</span><span class="nx-comment-date">2026-11-06</span></div>
+                    <p class="nx-comment-text">《深空回响》后半段确实好，但前四十分钟有点劝退。建议坚持看到进入主线的部分，后面的情感落点值回票价。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">雾</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">雾港居民</span><span class="nx-comment-date">2026-11-06</span></div>
+                    <p class="nx-comment-text">《雾港来信》第六集结尾那个反转有点刻意，希望后面能圆回来。不过整体氛围感确实到位，小镇阴冷潮湿的感觉拍出来了。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">长</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">长安夜行人</span><span class="nx-comment-date">2026-11-05</span></div>
+                    <p class="nx-comment-text">《长安夜行录》的服化道真的用心，西市那场戏的街景搭建看得出来花了不少功夫。案件质量有起伏，但整体可看性不错。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">春</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">春分之后</span><span class="nx-comment-date">2026-11-05</span></div>
+                    <p class="nx-comment-text">《春分之后》是今年看过最舒服的现实题材，没有刻意煽情，两个演员的对手戏很自然。适合一个人安静看完。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">云</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">云上邮差本人</span><span class="nx-comment-date">2026-11-04</span></div>
+                    <p class="nx-comment-text">画风加分，故事简单但不会觉得幼稚。带小朋友看的，大人也没觉得无聊，算是近期比较合格的合家欢动画。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">4</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">404租客</span><span class="nx-comment-date">2026-11-04</span></div>
+                    <p class="nx-comment-text">《合租公寓404》下饭可以，但不能细想。有些笑点确实好笑，有些就有点硬拗。适合不想动脑子的时候看。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">十</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">十一月的信</span><span class="nx-comment-date">2026-11-03</span></div>
+                    <p class="nx-comment-text">结局我不太能接受，感觉为了虐而虐。但前面的书信往来部分拍得很动人，演员的表演也在线，属于优缺点都很明显的片子。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">夜</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">夜行动物</span><span class="nx-comment-date">2026-11-03</span></div>
+                    <p class="nx-comment-text">星空影院这个页面最实用的就是更新列表，不用挨个平台翻，一眼能看到哪些剧更新了。希望保持这个更新频率。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">山</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">雾山看客</span><span class="nx-comment-date">2026-11-02</span></div>
+                    <p class="nx-comment-text">《雾山五行录》打斗设计确实有想法，但世界观铺得有点散，看的时候需要自己拼信息。第三集之后好很多。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">年</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">年会不能停</span><span class="nx-comment-date">2026-11-02</span></div>
+                    <p class="nx-comment-text">第二部笑点比第一部多，但讽刺力度弱了一些。下班看个乐呵没问题，别抱太高期待就行。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">片</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">片单收藏家</span><span class="nx-comment-date">2026-11-01</span></div>
+                    <p class="nx-comment-text">页面整理得挺清楚，分类入口直接跳到对应模块，不用在首页翻半天。深度解析写得比一般推荐号认真，有参考价值。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">小</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">小成本爱好者</span><span class="nx-comment-date">2026-10-31</span></div>
+                    <p class="nx-comment-text">希望多推一些中小成本现实题材，热门大片该看的都看了，反而这类片子容易漏掉。星空影院的选片方向可以再偏一点。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">追</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">追更中</span><span class="nx-comment-date">2026-10-30</span></div>
+                    <p class="nx-comment-text">《合租公寓404》更新太慢了，一周才两集，希望加更。不过每集二十分钟左右，追起来压力不大。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">冷</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">冷静观众</span><span class="nx-comment-date">2026-10-29</span></div>
+                    <p class="nx-comment-text">评分普遍偏高，建议参考的时候打个折扣。很多片子的实际观感和标注分数有差距，还是得看个人口味。</p>
+                </div>
+            </div>
+            <div class="nx-comment-item">
+                <div class="nx-avatar">新</div>
+                <div class="nx-comment-body">
+                    <div class="nx-comment-head"><span class="nx-comment-name">新来的</span><span class="nx-comment-date">2026-10-28</span></div>
+                    <p class="nx-comment-text">第一次来这个页面，结构比想象中清楚，FAQ部分解答了我不少疑问。先收藏了，慢慢看。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 相关资讯 -->
+<section class="nx-section" id="nx-news">
+    <div class="xl-container">
+        <div class="nx-section-head">
+            <h2>相关资讯</h2>
+            <a class="more" href="/#nx-news">更多资讯 →</a>
+        </div>
+        <div class="nx-news-grid">
+            <div class="nx-news-card">
+                <div class="nx-news-date">2026-11-07</div>
+                <h4>《深空回响》导演谈结尾设计</h4>
+                <p>导演在采访中回应了观众对结尾二十分钟的讨论，表示情感落点是有意为之，并非叙事失控。</p>
+            </div>
+            <div class="nx-news-card">
+                <div class="nx-news-date">2026-11-06</div>
+                <h4>悬疑剧集《雾港来信》进入收尾阶段</h4>
+                <p>该剧共12集，目前已更新至第7集，制片方透露最后三集会有两轮反转，线索已在前六集埋下。</p>
+            </div>
+            <div class="nx-news-card">
+                <div class="nx-news-date">2026-11-05</div>
+                <h4>《长安夜行录》单元案件口碑分化</h4>
+                <p>部分观众认为案件质量不稳定，制作方表示后续单元将加强逻辑闭环，服化道投入保持不变。</p>
+            </div>
+            <div class="nx-news-card">
+                <div class="nx-news-date">2026-11-04</div>
+                <h4>《云上邮差》手绘制作特辑发布</h4>
+                <p>官方释出动画制作过程，展示手绘场景的绘制细节。该片上映后口碑稳定，家庭观众占比突出。</p>
+            </div>
+            <div class="nx-news-card">
+                <div class="nx-news-date">2026-11-03</div>
+                <h4>《十一月的信》结局引发讨论</h4>
+                <p>影片上线后，结局处理成为评论区争议焦点，支持与反对观点均有，讨论量在三天内明显上升。</p>
+            </div>
+            <div class="nx-news-card">
+                <div class="nx-news-date">2026-11-02</div>
+                <h4>星空影院页面更新说明</h4>
+                <p>本月推荐列表已更新，新增现实题材和动画分类入口，最新更新模块保持每日同步影视动态。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="nx-footer">
+    <div class="xl-container">
+        <div class="nx-footer-inner">
+            <div class="nx-footer-brand">
+                <a class="nx-logo" href="/#nx-hero">
+                    <span class="nx-logo-icon"></span>
+                    <span>星空影院</span>
+                </a>
+                <p>星空影院是一个影视内容参考专题页，提供热门电影、剧集推荐与观影决策参考，不提供在线播放服务。</p>
+            </div>
+            <div class="nx-footer-links">
+                <div class="nx-footer-col">
+                    <h5>快速入口</h5>
+                    <a href="/#nx-hot">热门推荐</a>
+                    <a href="/#nx-update">最新更新</a>
+                    <a href="/#nx-cats">分类入口</a>
+                </div>
+                <div class="nx-footer-col">
+                    <h5>内容参考</h5>
+                    <a href="/#nx-deep">深度解析</a>
+                    <a href="/#nx-guide">体验指南</a>
+                    <a href="/#nx-faq">常见问题</a>
+                </div>
+                <div class="nx-footer-col">
+                    <h5>社区与资讯</h5>
+                    <a href="/#nx-comments">用户评论</a>
+                    <a href="/#nx-news">相关资讯</a>
+                    <a href="/#nx-intro">关于本页</a>
+                </div>
+            </div>
+        </div>
+        <div class="nx-footer-bottom">
+            <span>© 2026 星空影院 · 内容仅供参考 · 不提供播放服务</span>
+            <span>友情链接占位：影视资讯站 / 观影社区 / 片单分享平台</span>
+        </div>
+    </div>
+</footer>
+
+</body>
+              </html>
